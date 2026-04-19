@@ -15,6 +15,11 @@ export interface Meal {
     carbohydrates_total_g: number;
 }
 
+export interface MealRequest {
+    query: string;
+    personality: Personality;
+}
+
 export interface MealResponse {
     items: Meal[];
     reaction: string;
@@ -30,4 +35,12 @@ export interface Profile {
     height: number;
     gender: "male" | "female";
     activityLevel: number;
+}
+
+export interface CalorieNinjasResponse {
+    items: Meal[];
+}
+
+export interface AnthropicResponse {
+    content: { type: string; text: string}[];
 }
