@@ -1,5 +1,5 @@
 import express, { Application, Request, Response } from "express";
-import { AnthropicResponse, CalorieNinjasResponse, MealRequest, Personality } from './types';
+import { AnthropicResponse, CalorieNinjasResponse, MealRequest, Personality, NinjasActivityItem, ActivityResponse, ActivityRequest } from './types';
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -13,7 +13,7 @@ app.get("/health", (req: Request, res: Response): void => {
     res.json({ status: "ok" });
 });
 
-const systemPrompts = {
+const systemPrompts: Record<Personality, string> = {
     [Personality.AngryChef]: 'You are an Angry Chef. Everything the user eats is an insult to cooking. React to the meal data wtih dramatic suffering and fury. No markdown, no asterisks. Plain text. Use line breaks to separate points.',
     [Personality.Robot]: 'You are a COLD, clinical robot, ocasionally using signs like []{}<>=+-*&|\\!@#$%^, boolean etc. You analyse meal data, ZERO emotion. Be unsettling and super brief. 20 lines max. No markdown, no asterisks, no bullet symbols, no headers. Plain text. Use line breaks to separate points.',
     [Personality.MedievalPeasant]: 'You are a Medieval Peasant, baffled and horrified by modern food. React to the meal data in character. No markdown, no asterisks. Plain text. Use line breaks to separate points.',
@@ -60,6 +60,20 @@ async function getHaikuReaction(
     return data.content[0].text;
 }
 
+async function getCaloriesBurned(
+    activity: string,
+    duration: number
+): Promise<NinjasActivityItem[]> {
+    const response = await fetch(`https://api.api-ninjas.com/v1/caloriesburned?activity=${activity}&duration=${duration}`, {
+        method: 'GET',
+        headers: {
+            'X-Api-Key': process.env.NINJAS_API_KEY ?? '',
+        },
+    });
+    const data = await response.json();
+    return data as NinjasActivityItem[];
+}
+
 app.post('/api/meal', async (
     req: Request<{}, {}, MealRequest>,
     res: Response
@@ -71,6 +85,16 @@ app.post('/api/meal', async (
 
     res.json({ items: macros.items, reaction });
 });
+
+app.post('/api/burned', async (
+    req: Request<{}, {}, ActivityRequest>,
+    res: Response
+): Promise<void> => {
+    const {activity, duration} = req.body;
+    const burned = await getCaloriesBurned(activity, duration);
+
+    res.json({ burned: burned[0].total_calories });
+})
 
 app.listen(PORT, (): void => {
     console.log(`Server running on port ${PORT}`);

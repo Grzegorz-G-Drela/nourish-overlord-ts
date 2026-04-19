@@ -44,3 +44,15 @@ export interface CalorieNinjasResponse {
 export interface AnthropicResponse {
     content: { type: string; text: string}[];
 }
+
+export interface NinjasActivityItem {
+    name: string;
+    calories_per_hour: number;
+    duration_minutes: number;
+    total_calories: number;
+}
+
+export interface ActivityRequest {
+    activity: string;
+    duration: number;
+}
