@@ -1,3 +1,5 @@
+        // === ENUMS ===
+
 export enum Personality {
     Robot = "robot",
     AngryChef = "angry-chef",
@@ -7,12 +9,30 @@ export enum Personality {
     DrillSergeant = "drill-sergeant"
 }
 
+
+        // === PROFILE ===
+
+export interface Profile {
+    age: number;
+    weight: number;
+    height: number;
+    gender: "male" | "female";
+    activityLevel: number;
+}
+
+
+        // === MEAL (CalorieNinjas API) ===
+
 export interface Meal {
     name: string;
     calories: number;
     protein_g: number;
     fat_total_g: number;
     carbohydrates_total_g: number;
+}
+
+export interface CalorieNinjasResponse {
+    items: Meal[];
 }
 
 export interface MealRequest {
@@ -25,25 +45,9 @@ export interface MealResponse {
     reaction: string;
 }
 
-export interface ActivityResponse {
-    burned: number;
-}
 
-export interface Profile {
-    age: number;
-    weight: number;
-    height: number;
-    gender: "male" | "female";
-    activityLevel: number;
-}
 
-export interface CalorieNinjasResponse {
-    items: Meal[];
-}
-
-export interface AnthropicResponse {
-    content: { type: string; text: string}[];
-}
+        // === ACTIVITY (API Ninjas) ===
 
 export interface NinjasActivityItem {
     name: string;
@@ -56,3 +60,26 @@ export interface ActivityRequest {
     activity: string;
     duration: number;
 }
+
+export interface ActivityResponse {
+    burned: number;
+}
+
+
+
+        // === EXTERNAL APIs ===
+
+export interface AnthropicResponse {
+    content: { type: string; text: string }[];
+}
+
+
+
+
+
+
+
+
+
+
+
