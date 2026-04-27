@@ -73,13 +73,3 @@ export interface AnthropicResponse {
     content: { type: string; text: string }[];
 }
 
-
-
-
-
-
-
-
-
-
-
