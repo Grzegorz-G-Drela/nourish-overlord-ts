@@ -1,4 +1,13 @@
-import { AnthropicResponse, CalorieNinjasResponse, NinjasActivityItem, Personality} from './types';
+import { AnthropicResponse,
+    CalorieNinjasResponse,
+    NinjasActivityItem,
+    Personality,
+    AnthropicResponseSchema,
+    NinjasActivityItemSchema,
+    CalorieNinjasResponseSchema,
+} from './types';
+
+import { z } from 'zod';
 
 export const systemPrompts: Record<Personality, string> = {
     [Personality.AngryChef]: 'You are an Angry Chef. Everything the user eats is an insult to cooking. React to the meal data wtih dramatic suffering and fury. No markdown, no asterisks. Plain text. Use line breaks to separate points.',
@@ -19,7 +28,7 @@ export async function getMealMacros(
         },
     });
     const data = await response.json();
-    return data as CalorieNinjasResponse;
+    return CalorieNinjasResponseSchema.parse(data);
 }
 
 export async function getHaikuReaction(
@@ -42,8 +51,9 @@ export async function getHaikuReaction(
             ],
         }),
     });
-    const data = await response.json() as AnthropicResponse;
-    return data.content[0].text;
+    const data = await response.json();
+    const parsed = AnthropicResponseSchema.parse(data);
+    return parsed.content[0].text;
 }
 
 export async function getCaloriesBurned(
@@ -57,5 +67,5 @@ export async function getCaloriesBurned(
         },
     });
     const data = await response.json();
-    return data as NinjasActivityItem[];
+    return z.array(NinjasActivityItemSchema).parse(data);
 }

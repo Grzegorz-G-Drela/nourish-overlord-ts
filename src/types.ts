@@ -1,4 +1,7 @@
-        // === ENUMS ===
+import { z } from 'zod';
+
+
+// === ENUMS ===
 
 export enum Personality {
     Robot = "robot",
@@ -10,7 +13,7 @@ export enum Personality {
 }
 
 
-        // === PROFILE ===
+// === PROFILE ===
 
 export interface Profile {
     age: number;
@@ -21,7 +24,7 @@ export interface Profile {
 }
 
 
-        // === MEAL (CalorieNinjas API) ===
+// === MEAL (CalorieNinjas API) ===
 
 export interface Meal {
     name: string;
@@ -47,7 +50,7 @@ export interface MealResponse {
 
 
 
-        // === ACTIVITY (API Ninjas) ===
+// === ACTIVITY (API Ninjas) ===
 
 export interface NinjasActivityItem {
     name: string;
@@ -67,9 +70,39 @@ export interface ActivityResponse {
 
 
 
-        // === EXTERNAL APIs ===
+// === EXTERNAL APIs ===
 
 export interface AnthropicResponse {
     content: { type: string; text: string }[];
 }
 
+
+// === ZOD SCHEMAS ===
+
+export const MealSchema = z.object({
+    name: z.string(),
+    calories: z.number(),
+    protein_g: z.number(),
+    fat_total_g: z.number(),
+    carbohydrates_total_g: z.number(),
+});
+
+export const CalorieNinjasResponseSchema = z.object({
+    items: z.array(MealSchema),
+});
+
+export const AnthropicResponseSchema = z.object({
+    content: z.array(
+        z.object({
+            type: z.string(),
+            text: z.string(),
+        }),
+    ),
+});
+
+export const NinjasActivityItemSchema = z.object({
+    name: z.string(),
+    calories_per_hour: z.number(),
+    duration_minutes: z.number(),
+    total_calories: z.number(),
+});
