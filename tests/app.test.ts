@@ -62,16 +62,20 @@ describe('getHaikuReaction', () => {
 
     it('throws when fetch fails', async () => {
         (global.fetch as jest.Mock).mockRejectedValueOnce(new Error('Network error'));
-        await expect(getHaikuReaction({items:[]}, Personality.Robot)).rejects.toThrow('Network error');
+        await expect(getHaikuReaction({ items: [] }, Personality.Robot)).rejects.toThrow('Network error');
     });
 });
 
 describe('getCaloriesBurned', () => {
     it('returns NinjasActivityItem array on success', async () => {
-        const mockData: ActivityResponse = {
-            burned: 300,
-        };
-
+        const mockData = [
+            {
+                name: 'running',
+                calories_per_hour: 600,
+                duration_minutes: 30,
+                total_calories: 300,
+            },
+        ];
         (global.fetch as jest.Mock).mockResolvedValueOnce({
             json: async () => mockData,
         });
