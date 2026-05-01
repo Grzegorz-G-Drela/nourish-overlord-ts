@@ -33,6 +33,13 @@ describe('getMealMacros', () => {
         (global.fetch as jest.Mock).mockRejectedValueOnce(new Error('Network error'));
         await expect(getMealMacros('chicken')).rejects.toThrow('Network error');
     });
+
+    it('throws when API returns wrong shape', async () => {
+        (global.fetch as jest.Mock).mockResolvedValueOnce({
+            json: async () => ({ wrong: 'shape' }),
+        });
+        await expect(getMealMacros('chicken')).rejects.toThrow();
+    });
 });
 
 describe('getHaikuReaction', () => {
@@ -64,6 +71,13 @@ describe('getHaikuReaction', () => {
         (global.fetch as jest.Mock).mockRejectedValueOnce(new Error('Network error'));
         await expect(getHaikuReaction({ items: [] }, Personality.Robot)).rejects.toThrow('Network error');
     });
+
+    it('throws when API returns wrong shape', async () => {
+        (global.fetch as jest.Mock).mockResolvedValueOnce({
+            json: async () => ({ wrong: 'shape' }),
+        });
+        await expect(getHaikuReaction({ items: [] }, Personality.Robot)).rejects.toThrow();
+    });
 });
 
 describe('getCaloriesBurned', () => {
@@ -88,4 +102,12 @@ describe('getCaloriesBurned', () => {
         (global.fetch as jest.Mock).mockRejectedValueOnce(new Error('Network error'));
         await expect(getCaloriesBurned('running', 30)).rejects.toThrow('Network error');
     });
+
+    it('throws when API returns wrong shape', async () => {
+        (global.fetch as jest.Mock).mockResolvedValueOnce({
+            json: async () => ({ wrong: 'shape' }),
+        });
+        await expect(getCaloriesBurned('running', 30)).rejects.toThrow();
+    });
 });
+
