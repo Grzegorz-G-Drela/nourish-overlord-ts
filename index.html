@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nourish Overlord</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Nourish Overlord</h1>
+    </header>
+
+    <main>
+
+        <section id="meal-section">
+            <h2>Log a Meal</h2>
+            <form id="meal-form">
+                <input type="text" id="meal-input" placeholder="e.g. chicken and rice">
+                <select id="personality-select">
+                    <option value="" disabled selected>Select a personality</option>
+                    <option value="robot">Robot</option>
+                    <option value="angry-chef">Angry Chef</option>
+                    <option value="medieval-peasant">Medieval Peasant</option>
+                    <option value="conspiracy-theorist">Conspiracy Theorist</option>
+                    <option value="therapist">Therapist</option>
+                    <option value="drill-sergeant">Drill Sergeant</option>
+                </select>
+                <button type="submit">Analyse</button>
+            </form>
+            <div id="meal-results"></div>
+        </section>
+
+        <section id="burned-section">
+            <h2>Log Activity</h2>
+            <form id="burned-form">
+                <input type="text" id="activity-input" placeholder="e.g. running">
+                <input type="number" id="duration-input" placeholder="Duration (minutes)">
+                <button type="submit">Calculate</button>
+            </form>
+            <div id="burned-results"></div>
+        </section>
+        
+    </main>
+
+    <script src="./client.js"></script>
+
+</body>
+</html>
