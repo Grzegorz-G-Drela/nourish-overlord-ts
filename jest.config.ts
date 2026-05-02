@@ -4,7 +4,12 @@ const config: Config = {
     preset: "ts-jest",
     testEnvironment: "node",
     roots: ["<rootDir>/tests"],
-    collectCoverageFrom: ["src/**/*.ts"]
+    collectCoverageFrom: ["src/**/*.ts"],
+    globals: {
+        "ts-jest": {
+            tsconfig: "tsconfig.test.json"
+        }
+    }
 };
 
 export default config;
