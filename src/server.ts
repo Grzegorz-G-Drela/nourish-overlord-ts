@@ -35,6 +35,11 @@ app.post('/api/burned', async (
     const {activity, duration} = req.body;
     const burned = await getCaloriesBurned(activity, duration);
 
+    if (!burned.length) {
+        res.status(404).json({ error: 'Activity not found' });
+        return;
+    }
+
     res.json({ burned: burned[0].total_calories });
 })
 
