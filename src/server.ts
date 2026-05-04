@@ -43,6 +43,10 @@ app.post('/api/burned', async (
     res.json({ burned: burned[0].total_calories });
 })
 
-app.listen(PORT, (): void => {
-    console.log(`Server running on port ${PORT}`);
-});
+export default app;
+
+if (require.main === module) {
+    app.listen(PORT, (): void => {
+        console.log(`Server running on port ${PORT}`);
+    });
+}
