@@ -1,3 +1,5 @@
+const BASE_URL = window.location.hostname === 'localhost' ? 'http://localhost:3000' : window.location.origin;
+
 const mealForm = document.querySelector('#meal-form');
 const mealInput = document.querySelector('#meal-input');
 const personalitySelect = document.querySelector('#personality-select');
@@ -16,7 +18,7 @@ mealForm.addEventListener('submit', async (e) => {
     const query = mealInput.value;
     const personality = personalitySelect.value;
 
-    const response = await fetch('http://localhost:3000/api/meal', {
+    const response = await fetch(`${BASE_URL}/api/meal`, {
         method: 'POST',
         headers: { 'Content-type': 'application/json' },
         body: JSON.stringify({ query, personality }),
@@ -59,7 +61,7 @@ burnedForm.addEventListener('submit', async (e) => {
     const activity = activityInput.value;
     const duration = durationInput.value;
 
-    const response = await fetch('http://localhost:3000/api/burned', {
+    const response = await fetch(`${BASE_URL}/api/burned`, {
         method: "POST",
         headers: { 'Content-type': 'application/json' },
         body: JSON.stringify({ activity, duration }),
