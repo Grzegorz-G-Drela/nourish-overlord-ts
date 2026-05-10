@@ -3,6 +3,7 @@ import express, { Application, Request, Response } from "express";
 import { MealRequest, ActivityRequest } from './types';
 import {getMealMacros, getHaikuReaction, getCaloriesBurned} from './app';
 import dotenv from "dotenv";
+import path from 'path';
 
 dotenv.config();
 
@@ -11,6 +12,7 @@ const PORT = process.env.PORT ?? 3000;
 
 app.use(express.json());
 app.use(cors());
+app.use(express.static(path.join(__dirname, '..')));
 
 app.get("/health", (req: Request, res: Response): void => {
     res.json({ status: "ok" });
