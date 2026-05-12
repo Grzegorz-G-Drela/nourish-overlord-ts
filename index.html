@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nourish Overlord</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <header>
@@ -13,7 +15,23 @@
     </header>
 
     <main>
-
+        <section id="profile-section">
+            <h2>Your Profile</h2>
+            <form id="profile-form">
+                <input type="text" id="name-input" placeholder="Name">
+                <input type="number" id="age-input" placeholder="Age">
+                <input type="number" id="weight-input" placeholder="Weight (kg)">
+                <input type="number" id="height-input" placeholder="Height (cm)">
+                <select id="sex-select">
+                    <option value="" disabled selected>Select sex</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+                <button type="submit">Save Profile</button>
+            </form>
+            <div id="profile-results"></div>
+        </section>
+        
         <section id="meal-section">
             <h2>Log a Meal</h2>
             <form id="meal-form">
@@ -41,10 +59,11 @@
             </form>
             <div id="burned-results"></div>
         </section>
-        
+
     </main>
 
     <script src="./client.js"></script>
 
 </body>
+
 </html>
