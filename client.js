@@ -1,5 +1,13 @@
 const BASE_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ) ? 'http://127.0.0.1:3000' : window.location.origin;
 
+const profileForm = document.querySelector('#profile-form');
+const nameInput = document.querySelector('#name-input');
+const ageInput = document.querySelector('#age-input');
+const weightInput = document.querySelector('#weight-input');
+const heightInput = document.querySelector('#height-input');
+const sexSelect = document.querySelector('#sex-select');
+const profileResults = document.querySelector('#profile-results');
+
 const mealForm = document.querySelector('#meal-form');
 const mealInput = document.querySelector('#meal-input');
 const personalitySelect = document.querySelector('#personality-select');
