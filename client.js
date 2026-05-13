@@ -85,3 +85,7 @@ function renderBurnedResults(data) {
 
     burnedResults.append(burned);
 }
+
+personalitySelect.addEventListener('change', () => {
+    document.body.setAttribute('data-theme', personalitySelect.value);
+});

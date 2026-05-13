@@ -125,7 +125,7 @@ body[data-theme='robot'] {
     }
 }
 
-body[data-theme='chef'] {
+body[data-theme='angry-chef'] {
     --bg: #1a0000;
     --surface: #2d0000;
     --border: #8b0000;
@@ -136,7 +136,7 @@ body[data-theme='chef'] {
     font-family: 'Georgia', serif;
 }
 
-body[data-theme='peasant'] {
+body[data-theme='medieval-peasant'] {
     --bg: #f5e6c8;
     --surface: #fdf3dc;
     --border: #c8a96e;
@@ -147,7 +147,7 @@ body[data-theme='peasant'] {
     font-family: 'Georgia', serif;
 }
 
-body[data-theme='theorist'] {
+body[data-theme='conspiracy-theorist'] {
     --bg: #0a0f0a;
     --surface: #0f1f0f;
     --border: #1a4d1a;
@@ -169,7 +169,7 @@ body[data-theme='therapist'] {
     font-family: 'Georgia', serif;
 }
 
-body[data-theme='sergeant'] {
+body[data-theme='drill-sergeant'] {
     --bg: #1a1a00;
     --surface: #2a2a00;
     --border: #4d4d00;
