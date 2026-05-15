@@ -97,3 +97,22 @@ function renderBurnedResults(data) {
 personalitySelect.addEventListener('change', () => {
     document.body.setAttribute('data-theme', personalitySelect.value);
 });
+
+profileForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const name = nameInput.value;
+    const age = Number(ageInput.value);
+    const weight = Number(weightInput.value);
+    const height = Number(heightInput.value);
+    const sex = sexSelect.value;
+
+    const response = await fetch(`${BASE_URL}/api/profile`, {
+        method: 'POST',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify({ name, age, weight, height, sex }),
+    });
+
+    const data = await response.json();
+    profileResults.textContent = `Profile saved. BMR: ${data.bmr} kcal`;
+});

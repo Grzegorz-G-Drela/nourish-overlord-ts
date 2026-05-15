@@ -1,7 +1,9 @@
 import cors from 'cors';
 import express, { Application, Request, Response } from "express";
-import { MealRequest, ActivityRequest } from './types';
-import {getMealMacros, getHaikuReaction, getCaloriesBurned} from './app';
+import { saveProfile, loadProfile } from './storage';
+import { calculateBMR } from './bmr';
+import { MealRequest, ActivityRequest, Profile } from './types';
+import { getMealMacros, getHaikuReaction, getCaloriesBurned } from './app';
 import dotenv from "dotenv";
 import path from 'path';
 
@@ -34,7 +36,7 @@ app.post('/api/burned', async (
     req: Request<{}, {}, ActivityRequest>,
     res: Response
 ): Promise<void> => {
-    const {activity, duration} = req.body;
+    const { activity, duration } = req.body;
     const burned = await getCaloriesBurned(activity, duration);
 
     if (!burned.length) {
@@ -44,6 +46,28 @@ app.post('/api/burned', async (
 
     res.json({ burned: burned[0].total_calories });
 })
+
+app.post('api/profile', (
+    req: Request<{}, {}, Profile>,
+    res: Response
+): void => {
+    const profile = req.body;
+    saveProfile(profile);
+    const bmr = calculateBMR(profile);
+    res.json({ bmr });
+});
+
+app.get('/api/profile', (
+    req: Request,
+    res: Response
+): void => {
+    const profile = loadProfile();
+    if (!profile) {
+        res.status(404).json({ error: 'No profile found' });
+        return;
+    }
+    res.json(profile);
+});
 
 export default app;
 
