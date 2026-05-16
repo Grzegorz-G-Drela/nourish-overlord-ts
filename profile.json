@@ -1,7 +1,7 @@
 {
+  "name": "greg",
   "age": 36,
-  "weight": 80,
-  "height": 175,
-  "gender": "male",
-  "activityLevel": 1.55
+  "weight": 83,
+  "height": 183,
+  "sex": "male"
 }

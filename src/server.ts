@@ -47,7 +47,7 @@ app.post('/api/burned', async (
     res.json({ burned: burned[0].total_calories });
 })
 
-app.post('api/profile', (
+app.post('/api/profile', (
     req: Request<{}, {}, Profile>,
     res: Response
 ): void => {
