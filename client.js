@@ -1,3 +1,4 @@
+
 const BASE_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ) ? 'http://127.0.0.1:3000' : window.location.origin;
 
 const profileForm = document.querySelector('#profile-form');
@@ -116,3 +117,21 @@ profileForm.addEventListener('submit', async (e) => {
     const data = await response.json();
     profileResults.textContent = `Profile saved. BMR: ${data.bmr} kcal`;
 });
+
+
+
+// page load
+
+async function loadProfile() {
+    const response = await fetch(`${BASE_URL}/api/profile`);
+    if (!response.ok) return;
+    const data = await response.json();
+    nameInput.value = data.name;
+    ageInput.value = data.age;
+    weightInput.value = data.weight;
+    heightInput.value = data.height;
+    sexSelect.value = data.sex;
+    profileResults.textContent = `BMR: ${data.bmr} kcal`;
+}
+
+loadProfile();
