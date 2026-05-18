@@ -8,6 +8,7 @@ const weightInput = document.querySelector('#weight-input');
 const heightInput = document.querySelector('#height-input');
 const sexSelect = document.querySelector('#sex-select');
 const profileResults = document.querySelector('#profile-results');
+const activitySelect = document.querySelector('#activity-select');
 
 const mealForm = document.querySelector('#meal-form');
 const mealInput = document.querySelector('#meal-input');
@@ -107,15 +108,16 @@ profileForm.addEventListener('submit', async (e) => {
     const weight = Number(weightInput.value);
     const height = Number(heightInput.value);
     const sex = sexSelect.value;
+    const activityLevel = Number(activitySelect.value);
 
     const response = await fetch(`${BASE_URL}/api/profile`, {
         method: 'POST',
         headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify({ name, age, weight, height, sex }),
+        body: JSON.stringify({ name, age, weight, height, sex, activityLevel }),
     });
 
     const data = await response.json();
-    profileResults.textContent = `Profile saved. BMR: ${data.bmr} kcal`;
+    profileResults.textContent = `Profile saved. BMR: ${data.bmr} kcal | Daily target: ${data.dailyCalories} kcal`;
 });
 
 
@@ -131,7 +133,8 @@ async function loadProfile() {
     weightInput.value = data.weight;
     heightInput.value = data.height;
     sexSelect.value = data.sex;
-    profileResults.textContent = `BMR: ${data.bmr} kcal`;
+    activitySelect.value = data.activityLevel;
+    profileResults.textContent = `BMR: ${data.bmr} kcal | Daily target: ${data.dailyCalories} kcal`;
 }
 
 loadProfile();

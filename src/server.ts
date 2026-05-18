@@ -52,9 +52,9 @@ app.post('/api/profile', (
     res: Response
 ): void => {
     const profile = req.body;
-    saveProfile(profile);
-    const bmr = calculateBMR(profile);
-    res.json({ bmr });
+    const { bmr, dailyCalories } = calculateBMR(profile);
+    saveProfile({ ...profile, bmr, dailyCalories });
+    res.json({ bmr, dailyCalories });
 });
 
 app.get('/api/profile', (
@@ -66,7 +66,8 @@ app.get('/api/profile', (
         res.status(404).json({ error: 'No profile found' });
         return;
     }
-    res.json(profile);
+    const { bmr, dailyCalories } = calculateBMR(profile);
+    res.json({ ...profile, bmr, dailyCalories });
 });
 
 export default app;

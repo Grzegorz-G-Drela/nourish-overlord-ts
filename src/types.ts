@@ -9,7 +9,15 @@ export enum Personality {
     MedievalPeasant = "medieval-peasant",
     ConspiracyTheorist = "conspiracy-theorist",
     Therapist = "therapist",
-    DrillSergeant = "drill-sergeant"
+    DrillSergeant = "drill-sergeant",
+}
+
+export enum ActivityLevel {
+    Sedentary = 1.2,
+    LightlyActive = 1.375,
+    ModeratelyActive = 1.55,
+    VeryActive = 1.725,
+    ExtraActive = 1.9,
 }
 
 
@@ -20,7 +28,12 @@ export interface Profile {
     weight: number;
     height: number;
     gender: "male" | "female";
-    activityLevel: number;
+    activityLevel: ActivityLevel;
+}
+
+export interface StoredProfile extends Profile {
+    bmr: number;
+    dailyCalories: number;
 }
 
 
