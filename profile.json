@@ -1,0 +1,10 @@
+{
+  "name": "Mario",
+  "age": 32,
+  "weight": 72,
+  "height": 176,
+  "sex": "male",
+  "activityLevel": 1.725,
+  "bmr": 1499,
+  "dailyCalories": 2585.775
+}

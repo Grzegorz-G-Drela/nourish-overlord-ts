@@ -10,7 +10,8 @@ describe('calculateBMR', () => {
             gender: 'male',
             activityLevel: 1.55
         };
-        expect(calculateBMR(profile)).toBe(1718.75);
+        expect(calculateBMR(profile).bmr).toBe(1718.75);
+        expect(calculateBMR(profile).dailyCalories).toBe(2664.0625);
     });
 
     it('returns correct BMR for a female profile', () => {
@@ -21,7 +22,8 @@ describe('calculateBMR', () => {
             gender: 'female',
             activityLevel: 1.2
         };
-        expect(calculateBMR(profile)).toBe(1380.25);
+        expect(calculateBMR(profile).bmr).toBe(1380.25);
+        expect(calculateBMR(profile).dailyCalories).toBe(1656.3);
     });
 
     it('returns a number greater than zero for any valid profile', () => {
@@ -32,6 +34,6 @@ describe('calculateBMR', () => {
             gender: 'male',
             activityLevel: 1.2
         };
-        expect(calculateBMR(profile)).toBeGreaterThan(0);
+        expect(calculateBMR(profile).bmr).toBeGreaterThan(0);
     });
 });

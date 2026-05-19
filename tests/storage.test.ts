@@ -1,16 +1,18 @@
 import fs from 'fs';
 import path from 'path';
 import { saveProfile, loadProfile } from '../src/storage';
-import { Profile } from '../src/types';
+import { StoredProfile } from '../src/types';
 
 jest.mock('fs');
 
-const mockProfile: Profile = {
+const mockProfile: StoredProfile = {
     age: 36,
     weight: 80,
     height: 175,
     gender: 'male',
-    activityLevel: 1.55
+    activityLevel: 1.55,
+    bmr: 1718.75,
+    dailyCalories: 2664.0625,
 };
 
 describe('saveProfile', () => {
