@@ -89,6 +89,17 @@ section:last-child {
     margin-bottom: 70px;
 }
 
+#profile-results {
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 15px;
+    color: var(--accent);
+    font-weight: bold;
+}
+
 /* Personality themes */
 
 body[data-theme='robot'] {
